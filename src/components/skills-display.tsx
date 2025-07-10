@@ -1,6 +1,4 @@
-import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { cn } from "@/lib/utils";
 import {
   Code,
   Database,
@@ -16,18 +14,18 @@ import {
   Terminal,
 } from "lucide-react";
 
-// Technical Skills with proficiency levels
+// Technical Skills without progress bars
 const technicalSkills = [
-  { name: "JavaScript/TypeScript", proficiency: 95 },
-  { name: "React & React Native", proficiency: 92 },
-  { name: "Node.js & Express", proficiency: 88 },
-  { name: "Next.js", proficiency: 90 },
-  { name: "HTML/CSS/SASS", proficiency: 95 },
-  { name: "GraphQL", proficiency: 85 },
-  { name: "SQL & NoSQL Databases", proficiency: 82 },
-  { name: "AWS & Cloud Services", proficiency: 78 },
-  { name: "Docker & Kubernetes", proficiency: 75 },
-  { name: "Testing (Jest, Cypress)", proficiency: 85 },
+  "JavaScript/TypeScript",
+  "React & React Native",
+  "Node.js & Express",
+  "Next.js",
+  "HTML/CSS/SASS",
+  "GraphQL",
+  "SQL & NoSQL Databases",
+  "AWS & Cloud Services",
+  "Docker & Kubernetes",
+  "Testing (Jest, Cypress)",
 ];
 
 // Tools categorized by type
@@ -83,24 +81,6 @@ const tools = [
 ];
 
 export default function SkillsDisplay() {
-  // Function to determine skill level label
-  const getSkillLevel = (proficiency: number) => {
-    if (proficiency >= 90) return "Expert";
-    if (proficiency >= 80) return "Advanced";
-    if (proficiency >= 70) return "Proficient";
-    if (proficiency >= 50) return "Intermediate";
-    return "Beginner";
-  };
-
-  // Function to get color class based on proficiency
-  const getColorClass = (proficiency: number) => {
-    if (proficiency >= 90) return "text-green-500";
-    if (proficiency >= 80) return "text-blue-500";
-    if (proficiency >= 70) return "text-purple-500";
-    if (proficiency >= 50) return "text-amber-500";
-    return "text-gray-500";
-  };
-
   return (
     <div className="bg-auto py-16 md:py-24">
       <div className="container mx-auto px-4 2xl:max-w-[1400px]">
@@ -109,13 +89,13 @@ export default function SkillsDisplay() {
             Skills & Technologies
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg">
-            A comprehensive overview of my technical skills, proficiency levels,
-            and the tools I use to create exceptional digital experiences.
+            A comprehensive overview of my technical skills and the tools I use
+            to create exceptional digital experiences.
           </p>
         </div>
 
-        <Tabs defaultValue="skills" className="max-w-4x  mx-auto">
-          <TabsList className="grid h-fit w-full bg-black grid-cols-1 md:grid-cols-2">
+        <Tabs defaultValue="skills" className="max-w-4x mx-auto">
+          <TabsList className="grid h-fit w-full bg-gray-600 grid-cols-1 md:grid-cols-2">
             <TabsTrigger className="font-semibold" value="skills">Technical Skills</TabsTrigger>
             <TabsTrigger className="font-semibold" value="tools">Tools & Technologies</TabsTrigger>
           </TabsList>
@@ -128,29 +108,18 @@ export default function SkillsDisplay() {
                   className="text-primary mr-2 inline h-5 w-5"
                   color="white"
                 />
-                Skill Proficiency Levels
+                Technical Skills Overview
               </h3>
 
-              <div className="mt-6 grid bg-auto gap-5 sm:grid-cols-2">
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 list-disc list-inside text-white mt-4">
                 {technicalSkills.map((skill) => (
-                  <div key={skill.name} className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <p className="font-medium">{skill.name}</p>
-                      <span
-                        className={cn(
-                          "text-sm font-semibold",
-                          getColorClass(skill.proficiency)
-                        )}
-                      >
-                        {getSkillLevel(skill.proficiency)}
-                      </span>
-                    </div>
-                    <Progress value={skill.proficiency} className="h-2" />
-                  </div>
+                  <li key={skill} className="text-base">{skill}</li>
                 ))}
-              </div>
+              </ul>
             </div>
           </TabsContent>
+
+          {/* Tools & Technologies Tab */}
           <TabsContent value="tools" className="mt-6">
             <div className="bg-[#141420] rounded-xl border p-6">
               <h3 className="mb-6 text-xl font-semibold">
